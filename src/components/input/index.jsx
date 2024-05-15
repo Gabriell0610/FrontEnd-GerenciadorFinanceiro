@@ -1,13 +1,23 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-const InputComponent = ({ label, placeholder, value, onChange, type }) => {
+const InputComponent = ({
+  label,
+  placeholder,
+  value,
+  onChange,
+  type,
+  required,
+}) => {
   return (
     <>
-      <label>{label}</label>
+      <label className="form-label">{label}</label>
       <input
+        className="form-control"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         type={type}
+        required={required}
       />
     </>
   );

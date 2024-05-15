@@ -4,5 +4,13 @@
 }
 
 body {
-  background-color: #dcdcdc;
+  background-color: #dcdcdc !important;
+}
+
+button {
+  width: 100%;
+}
+
+p {
+  margin-bottom: 0;
 }
