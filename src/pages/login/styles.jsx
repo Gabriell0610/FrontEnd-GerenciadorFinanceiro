@@ -27,7 +27,4 @@ export const CreatAcc = styled.p`
   text-align: center;
   font-weight: 600;
   cursor: pointer;
-  :hover {
-    color: #1e78ee;
-  }
 `;
