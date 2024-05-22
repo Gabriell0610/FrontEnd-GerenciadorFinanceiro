@@ -1,6 +1,6 @@
 // eslint-disable-next-line react/prop-types
-const MessageError = ({ mensage }) => {
-  return <p>{mensage}</p>;
+const MessageErrorComponent = ({ children }) => {
+  return <p style={{color: "red"}}>{children}</p>;
 };
 
-export default MessageError;
+export default MessageErrorComponent
