@@ -37,7 +37,10 @@ const Login = () => {
     setLoading(true)
     try {
       const response = await axios.post("http://localhost:3333/login", data);
-      console.log(response?.data)
+
+      const token = {token: response?.data.token} // trasnformando o token em um objeto
+      localStorage.setItem("token",JSON.stringify(token)) // salvando no localStorage
+      
       setLoading(false)
    
     } catch (error) {
@@ -56,9 +59,10 @@ const Login = () => {
           <Input
             label="Email"
             placeholder="Digite o email"
-            {...register("email")}
+            {...register("email")} // Registrando o email no useForm e fazendo a validação
           />
-          {errors?.email && (<MessageError>{errors.email.message}</MessageError>)}
+          {errors?.email && (<MessageError>{errors.email.message}</MessageError>)} 
+
           <Spacing></Spacing>
           <Input
             label="Senha"
@@ -66,13 +70,17 @@ const Login = () => {
             type="password"
             {...register("password")}
           />
-           {errors?.password && (<MessageError>{errors.password.message}</MessageError>)}
+
+          {errors?.password && (<MessageError>{errors.password.message}</MessageError>)}
           <Spacing></Spacing>
+
           <Button value="Entrar" variant="btn-primary" type="submit" />
           <Spacing></Spacing>
-          <CreatAcc onClick={() => navigate("/register")}>
+
+          <CreatAcc onClick={() => navigate("/register")}> 
             Criar uma conta!
           </CreatAcc>
+
         </form>)}
       </Body>
     </Main>
