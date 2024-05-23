@@ -1,8 +1,9 @@
 ## Gerenciador Financeiro
 
-Projeto sendo criado para aprendizagem em react, esse projeto irá consumir uma API que irei criar com node 
+Projeto sendo criado para aprendizagem em react, esse projeto está consumindo uma API que criei com o Node
 
-### Tecnologias
+### Tecnologias 🚀
 - styled components
 - Yup
+- React
 
