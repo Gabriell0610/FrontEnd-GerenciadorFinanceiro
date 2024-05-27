@@ -3,7 +3,8 @@ import Home from "../pages/home";
 import Login from "../pages/login";
 import Register from "../pages/register";
 import Private from "./private";
-import { Menu } from "../components/index";
+import User from "../pages/users"
+ import { Menu } from "../components/index";
 
 const RoutesComponent = () => {
   return (
@@ -17,6 +18,13 @@ const RoutesComponent = () => {
             <Private Component={Home} />
           </Menu>
         }
+      />
+      <Route path="/user"
+          element={
+          <Menu>
+            <Private Component={User} />
+          </Menu>
+        } 
       />
     </Routes>
   );
