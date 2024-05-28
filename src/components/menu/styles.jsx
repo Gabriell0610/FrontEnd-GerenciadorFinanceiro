@@ -38,29 +38,6 @@ export const Option = styled.div`
     background-color: #8c88883d;
   }
 `
-
-export const UserContainer = styled.div`
- display: flex;
- align-items: center;
- justify-content: center;
- gap: .5rem;
- width: 90%;
- position: absolute;
- bottom: 2rem;
- color: #fff;
-`
-
-export const UserLogin = styled.div`
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  background-color: #f0eaea;
-  border-radius: 50%;
-  text-align: center;
-  color: #222;
-  font-weight: bold;
-`
-
 export const Content = styled.div`
   margin-left: 260px;
   margin-top: 20px;
