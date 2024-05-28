@@ -3,7 +3,7 @@ import { Main, Body, Logo, Spacing, CreatAcc } from "./styles";
 import { Input, Button } from "../../components/";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../services/api";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Register = () => {
 
   const save = async (ev) => {
     ev.preventDefault();
-    await axios.post("http://localhost:3333/user", data);
+    await api.post("/user", data);
     alert("Usuário criado com sucesso");
   };
 

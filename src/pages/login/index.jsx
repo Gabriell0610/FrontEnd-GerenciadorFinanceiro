@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import axios from "axios";
 import { useState } from "react";
+import api from "../../services/api";
 
 const Login = () => {
   //Dizendo que o estado do loading é false
@@ -40,7 +40,7 @@ const Login = () => {
   const loginUser = async (data) => {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:3333/login", data);
+      const response = await api.post("/login", data);
 
       const token = { token: response?.data.token }; // transformando o token em um objeto
       localStorage.setItem("token", JSON.stringify(token)); // salvando no localStorage
