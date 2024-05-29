@@ -84,7 +84,7 @@ const User = () => {
 										<td>
 											<ActionButtonDiv>
 												<Button value="Excluir" variant="btn-danger" onClick={() =>  removeUser(data.id)}/>
-												<Button value="Editar" variant="btn-warning"/>
+												<Button value="Editar" variant="btn-warning" onClick={() => navigate(`/user/create/${data.id}`)}/>
 											</ActionButtonDiv>
 										</td>
                   </tr>

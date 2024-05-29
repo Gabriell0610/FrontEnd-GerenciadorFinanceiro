@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Register from "../pages/register";
-import Private from "./private";
 import User from "../pages/users"
-import { Menu } from "../components/index";
 import create from "../pages/users/create"
+import Private from "./private";
+import { Menu } from "../components/index";
 
 const RoutesComponent = () => {
   return (
@@ -28,6 +28,13 @@ const RoutesComponent = () => {
         } 
       />
       <Route path="/user/create"
+          element={
+           <Menu>
+             <Private Component={create} />
+           </Menu>
+        } 
+      />
+      <Route path="/user/create/:id"
           element={
            <Menu>
              <Private Component={create} />
