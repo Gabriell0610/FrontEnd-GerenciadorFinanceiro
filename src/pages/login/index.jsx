@@ -33,7 +33,7 @@ const Login = () => {
   const {
     handleSubmit, //Responsável por chamar a validação
     register, //Responsável por registrar o input dentro do useForm
-    formState: { errors },
+    formState: { errors },  // Contém os erros de validação
   } = useForm({ resolver: yupResolver(schema) }); // biblioteca para que o hookform consiga se comunicar com o YUP
 
   //Função responsável por pegar o token após o login do usuário
@@ -62,29 +62,28 @@ const Login = () => {
         {!loading && (
           <form onSubmit={handleSubmit(loginUser)}>
             <Logo>Gerenciador Financeiro</Logo>
+            
             <Input
               label="Email"
               placeholder="Digite o email"
               {...register("email")} // Registrando o email no useForm e fazendo a validação
             />
-            {errors?.email && (
-              <MessageError>{errors.email.message}</MessageError>
-            )}
+            {errors?.email && <MessageError>{errors.email.message}</MessageError>}
 
             <Spacing></Spacing>
+
             <Input
               label="Senha"
               placeholder="Digite sua senha"
               type="password"
               {...register("password")}
             />
+            {errors?.password && (<MessageError>{errors.password.message}</MessageError>)}
 
-            {errors?.password && (
-              <MessageError>{errors.password.message}</MessageError>
-            )}
             <Spacing></Spacing>
 
             <Button value="Entrar" variant="btn-primary" type="submit" />
+
             <Spacing></Spacing>
 
             <CreatAcc onClick={() => navigate("/register")}>

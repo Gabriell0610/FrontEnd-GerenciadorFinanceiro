@@ -4,12 +4,13 @@ import { Content, Button, LoadingComponent } from "../../components";
 import { ContainerButton, ActionButtonDiv } from "./styles";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
   const token = JSON.parse(localStorage.getItem("token")); // pegando o token do localStorage
   const [users, setUsers] = useState([]); // Criando um estado para os usuarios em forma de array
-
   const [loading, setLoading] = useState(false); //Setando o estado do loading
+  const navigate = useNavigate()
 
   async function getUsers() { // Função responsável por pegar os usuários pela API
     setLoading(true)
@@ -30,16 +31,18 @@ const User = () => {
 	async function removeUser(id) { // Função que deleta os usuários
 		setLoading(true)
 		try {
-			await api.delete(`/user/${id}`, {
-				headers: { 
-					Authorization: `Bearer ${token.token}`,
-				},
-			})
-
-			setUsers(users.filter((data) => {
-				return data.id != id
-			}))
-			
+      const mensage = confirm("Tem certeza que deseja deletar o usuário?")
+			if(mensage) {
+        await api.delete(`/user/${id}`, {
+          headers: { 
+            Authorization: `Bearer ${token.token}`,
+          },
+        })
+  
+        setUsers(users.filter((data) => {
+          return data.id != id
+        }))
+      }
 			console.log("Deletado com sucesso", id)
 			setLoading(false)
 	} catch (error) {
@@ -57,7 +60,7 @@ const User = () => {
     <>
       <Content>
         <ContainerButton>
-          <Button value="Criar usuário" variant="btn-primary" />
+          <Button value="Criar usuário" variant="btn-primary" onClick={() => navigate("/user/create")} />
         </ContainerButton>
 
 				{loading && <LoadingComponent/>} 
