@@ -32,7 +32,7 @@ const MenuComponent = ({ children }) => {
           <IconUser />
           Usuários
         </Option>
-        <Option onClick={() => navigate("/sales")}>
+        <Option onClick={() => navigate("/purchase")}>
           <IconMoney />
           Compra
         </Option>

@@ -2,9 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Register from "../pages/register";
-import User from "../pages/users"
-import create from "../pages/users/create"
+import User from "../pages/users";
+import create from "../pages/users/create";
 import Private from "./private";
+import Purchase from "../pages/purchase";
+import Form from "../pages/purchase/form";
 import { Menu } from "../components/index";
 
 const RoutesComponent = () => {
@@ -20,26 +22,45 @@ const RoutesComponent = () => {
           </Menu>
         }
       />
-      <Route path="/user"
-          element={
+      <Route
+        path="/user"
+        element={
           <Menu>
             <Private Component={User} />
           </Menu>
-        } 
+        }
       />
-      <Route path="/user/create"
-          element={
-           <Menu>
-             <Private Component={create} />
-           </Menu>
-        } 
+      <Route
+        path="/user/create"
+        element={
+          <Menu>
+            <Private Component={create} />
+          </Menu>
+        }
       />
-      <Route path="/user/create/:id"
-          element={
-           <Menu>
-             <Private Component={create} />
-           </Menu>
-        } 
+      <Route
+        path="/user/create/:id"
+        element={
+          <Menu>
+            <Private Component={create} />
+          </Menu>
+        }
+      />
+      <Route
+        path="/purchase"
+        element={
+          <Menu>
+            <Private Component={Purchase} />
+          </Menu>
+        }
+      />
+      <Route
+        path="/purchase/form"
+        element={
+          <Menu>
+            <Private Component={Form} />
+          </Menu>
+        }
       />
     </Routes>
   );

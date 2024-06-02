@@ -14,3 +14,25 @@ button {
 p {
   margin-bottom: 0;
 }
+
+table {
+  font-weight: 400;
+}
+
+.container-button {
+  max-width: 150px;
+  margin-bottom: 1.5rem;
+}
+
+.action-btn-div {
+  display: flex;
+  width: 150px;
+  gap: 0.3rem;
+}
+
+.row {
+  margin-bottom: 1rem;
+}
+
+
+
