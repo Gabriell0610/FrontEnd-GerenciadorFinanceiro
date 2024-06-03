@@ -22,18 +22,12 @@ const Form = () => {
   const schema = yup.object({
     coin: yup.string().required("Campo obrigatório"),
     date_purchase: yup.string().required("Campo obrigatório"),
-    unity: yup
-      .number()
-      .required("Campo obrigatório")
-      .typeError("Quantidade deve ser um número"),
-    value_purchase: yup
-      .number()
-      .required("Campo obrigatório")
-      .typeError("Valor da unidade deve ser um número"),
+    unity: yup.number().required().typeError("Campo obrigatório"),
+    value_purchase: yup.number().required().typeError("Campo obrigatório"),
     total_money_purchase: yup
       .number()
-      .required("Campo obrigatório")
-      .typeError("Valor total deve ser um número"),
+      .required()
+      .typeError("Campo obrigatório"),
   });
 
   const {
