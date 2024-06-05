@@ -6,10 +6,10 @@ import {
   MessageError,
   LoadingComponent,
 } from "../../components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import * as yup from "yup";
 import api from "../../services/api";
@@ -18,6 +18,7 @@ const Form = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const token = JSON.parse(localStorage.getItem("token"));
+  const { id } = useParams();
 
   const schema = yup.object({
     coin: yup.string().required("Campo obrigatório"),
@@ -33,26 +34,63 @@ const Form = () => {
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const save = (data) => {
+  const save = async (data) => {
     setLoading(true);
     try {
-      api.post("/sales", data, {
+      if (id) {
+        await api.put(`/sales/${id}`, data, {
+          headers: {
+            Authorization: `Bearer ${token.token}`,
+          },
+        });
+        alert("Item editado com sucesso");
+      } else {
+        await api.post("/sales", data, {
+          headers: {
+            Authorization: `Bearer ${token.token}`,
+          },
+        });
+      }
+      setLoading(false);
+      navigate("/purchase");
+    } catch (error) {
+      alert("Erro ao salvar os dados");
+      console.log("Error response:", error.response);
+      setLoading(false);
+    }
+  };
+
+  async function getPurchaseById() {
+    setLoading(true);
+    try {
+      const dataPurchase = await api.get(`/sales/${id}`, {
         headers: {
           Authorization: `Bearer ${token.token}`,
         },
       });
-      navigate("/purchase");
+
+      setValue("coin", dataPurchase?.data?.coin);
+      setValue("date_purchase", dataPurchase?.data?.date_purchase);
+      setValue("unity", dataPurchase?.data?.unity);
+      setValue("value_purchase", dataPurchase?.data?.value_purchase);
+      setValue(
+        "total_money_purchase",
+        dataPurchase?.data?.total_money_purchase
+      );
       setLoading(false);
-      console.log(data);
     } catch (error) {
-      alert("Erro ao salvar os dados");
-      console.log(error);
+      console.log("Error response:", error.response);
       setLoading(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    if (id) getPurchaseById();
+  }, [id]);
 
   return (
     <Content>
@@ -122,7 +160,11 @@ const Form = () => {
             </div>
 
             <div className="action-btn-div">
-              <Button value="Salvar" variant="btn-primary" type="submit" />
+              <Button
+                value={id ? "Editar" : "Salvar"}
+                variant="btn-primary"
+                type="submit"
+              />
               <Button
                 value="Cancelar"
                 variant="btn-warning"

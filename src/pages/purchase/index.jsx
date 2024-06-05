@@ -20,7 +20,7 @@ const Purchase = () => {
           Authorization: `Bearer ${token?.token}`,
         },
       });
-      console.log(response?.data);
+
       setData(response?.data);
       setLoading(false);
     } catch (error) {
@@ -37,6 +37,25 @@ const Purchase = () => {
 
     return convert;
   };
+
+  async function removeCoin(id) {
+    setLoading(true);
+    try {
+      const msg = confirm("Tem certeza que deseja remover o dado?");
+      if (msg) {
+        await api.delete(`/sales/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token?.token}`,
+          },
+        });
+      }
+      getPurchase();
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      alert("Erro ao remover o dado");
+    }
+  }
 
   useEffect(() => {
     getPurchase();
@@ -75,8 +94,16 @@ const Purchase = () => {
                   <td>{convert(data.total_money_purchase)}</td>
                   <td>
                     <div className="action-btn-div">
-                      <Button value="Excluir" variant="btn-danger" />
-                      <Button value="Editar" variant="btn-warning" />
+                      <Button
+                        value="Excluir"
+                        variant="btn-danger"
+                        onClick={() => removeCoin(data.id)}
+                      />
+                      <Button
+                        value="Editar"
+                        variant="btn-warning"
+                        onClick={() => navigate(`/purchase/form/${data.id}`)}
+                      />
                     </div>
                   </td>
                 </tr>

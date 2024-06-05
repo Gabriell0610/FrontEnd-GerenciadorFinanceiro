@@ -41,26 +41,6 @@ const create = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  async function getUserById() {
-    setLoading(true);
-    try {
-      const user = await api.get(`/user/${Number(id)}`, {
-        headers: {
-          Authorization: `Bearer ${token.token}`,
-        },
-      });
-
-      setValue("name", user?.data?.name);
-      setValue("email", user?.data?.email);
-
-      console.log(user.data);
-      setLoading(false);
-    } catch (error) {
-      alert("Erro");
-      setLoading(false);
-    }
-  }
-
   async function saveUser(data) {
     setLoading(true);
     try {
@@ -80,6 +60,26 @@ const create = () => {
     } catch (error) {
       setLoading(false);
       alert("Erro ao criar o usuário");
+    }
+  }
+
+  async function getUserById() {
+    setLoading(true);
+    try {
+      const user = await api.get(`/user/${Number(id)}`, {
+        headers: {
+          Authorization: `Bearer ${token.token}`,
+        },
+      });
+
+      setValue("name", user?.data?.name);
+      setValue("email", user?.data?.email);
+
+      console.log(user.data);
+      setLoading(false);
+    } catch (error) {
+      alert("Erro");
+      setLoading(false);
     }
   }
 

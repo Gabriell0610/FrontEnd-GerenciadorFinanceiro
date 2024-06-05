@@ -62,6 +62,14 @@ const RoutesComponent = () => {
           </Menu>
         }
       />
+      <Route
+        path="/purchase/form/:id"
+        element={
+          <Menu>
+            <Private Component={Form} />
+          </Menu>
+        }
+      />
     </Routes>
   );
 };
