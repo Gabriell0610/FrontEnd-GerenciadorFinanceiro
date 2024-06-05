@@ -58,8 +58,8 @@ const create = () => {
       setLoading(false);
       navigate("/user");
     } catch (error) {
-      setLoading(false);
       alert("Erro ao criar o usuário");
+      setLoading(false);
     }
   }
 

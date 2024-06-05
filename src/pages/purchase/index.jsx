@@ -70,47 +70,56 @@ const Purchase = () => {
           onClick={() => navigate("/purchase/form")}
         />
       </div>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Moeda</th>
-            <th>Data</th>
-            <th>Unidade</th>
-            <th>Valor da unidade</th>
-            <th>Total</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.length
-            ? data.map((data, index) => (
-                <tr key={index}>
-                  <td>{data.id}</td>
-                  <td>{data.coin}</td>
-                  <td>{moment(data?.date_purchase).format("DD/MM/YYYY")}</td>
-                  <td>{data.unity}</td>
-                  <td>{convert(data.value_purchase)}</td>
-                  <td>{convert(data.total_money_purchase)}</td>
-                  <td>
-                    <div className="action-btn-div">
-                      <Button
-                        value="Excluir"
-                        variant="btn-danger"
-                        onClick={() => removeCoin(data.id)}
-                      />
-                      <Button
-                        value="Editar"
-                        variant="btn-warning"
-                        onClick={() => navigate(`/purchase/form/${data.id}`)}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              ))
-            : null}
-        </tbody>
-      </table>
+      {loading && <LoadingComponent />}
+      {!loading && (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Moeda</th>
+              <th>Data</th>
+              <th>Unidade</th>
+              <th>Valor da unidade</th>
+              <th>Total</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          {
+            <tbody>
+              {data?.length
+                ? data.map((data, index) => (
+                    <tr key={index}>
+                      <td>{data.id}</td>
+                      <td>{data.coin}</td>
+                      <td>
+                        {moment(data?.date_purchase).format("DD/MM/YYYY")}
+                      </td>
+                      <td>{data.unity}</td>
+                      <td>{convert(data.value_purchase)}</td>
+                      <td>{convert(data.total_money_purchase)}</td>
+                      <td>
+                        <div className="action-btn-div">
+                          <Button
+                            value="Excluir"
+                            variant="btn-danger"
+                            onClick={() => removeCoin(data.id)}
+                          />
+                          <Button
+                            value="Vender"
+                            variant="btn-success"
+                            onClick={() =>
+                              navigate(`/purchase/form/${data.id}`)
+                            }
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                : null}
+            </tbody>
+          }
+        </table>
+      )}
     </Content>
   );
 };

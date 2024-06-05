@@ -41,6 +41,7 @@ const Form = () => {
   const save = async (data) => {
     setLoading(true);
     try {
+      console.log("Dados enviados:", data);
       if (id) {
         await api.put(`/sales/${id}`, data, {
           headers: {
@@ -73,6 +74,8 @@ const Form = () => {
         },
       });
 
+      console.log(dataPurchase.data);
+
       setValue("coin", dataPurchase?.data?.coin);
       setValue("date_purchase", dataPurchase?.data?.date_purchase);
       setValue("unity", dataPurchase?.data?.unity);
@@ -94,6 +97,7 @@ const Form = () => {
 
   return (
     <Content>
+      <h2 className="title-sales">Informações de compra da moeda</h2>
       <div className="container">
         {loading && <LoadingComponent />}
         {!loading && (
@@ -158,10 +162,10 @@ const Form = () => {
                 )}
               </div>
             </div>
-
+            <h2 className="title-purchase">Venda sua Moeda</h2>
             <div className="action-btn-div">
               <Button
-                value={id ? "Editar" : "Salvar"}
+                value={id ? "Vender" : "Salvar"}
                 variant="btn-primary"
                 type="submit"
               />

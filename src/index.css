@@ -34,5 +34,15 @@ table {
   margin-bottom: 1rem;
 }
 
+.title-sales {
+  margin-left: .7rem;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.title-purchase {
+  font-size: 1.4rem;
+}
+
 
 
