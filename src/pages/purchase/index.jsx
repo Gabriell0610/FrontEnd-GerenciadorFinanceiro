@@ -78,7 +78,7 @@ const Purchase = () => {
               <th>ID</th>
               <th>Moeda</th>
               <th>Data</th>
-              <th>Unidade</th>
+              <th>Quantidade</th>
               <th>Valor da unidade</th>
               <th>Total</th>
               <th>Ações</th>
@@ -106,11 +106,12 @@ const Purchase = () => {
                           />
                           <Button
                             value="Vender"
-                            variant="btn-success"
+                            variant="btn-warning"
                             onClick={() =>
                               navigate(`/purchase/form/${data.id}`)
                             }
                           />
+                
                         </div>
                       </td>
                     </tr>
