@@ -46,7 +46,7 @@ const Form = () => {
     register,
     setValue,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(id ? schemaSale : schema ) });
+  } = useForm({ resolver: yupResolver(id ? schemaSale : schema) });
 
   const save = async (data) => {
     setLoading(true);
@@ -107,7 +107,11 @@ const Form = () => {
 
   return (
     <Content>
-      {id ? <h2 className="title-sales">Informações de compra da moeda</h2> : ''}
+      {id ? (
+        <h2 className="title-sales">Informações de compra da moeda</h2>
+      ) : (
+        ""
+      )}
 
       <div className="container">
         {loading && <LoadingComponent />}
@@ -176,7 +180,7 @@ const Form = () => {
 
             {id ? <h2 className="title-purchase">Venda sua moeda</h2> : ""}
 
-            {id &&
+            {id && (
               <>
                 <div className="row">
                   <div className="col">
@@ -221,7 +225,9 @@ const Form = () => {
                       {...register("total_money_sale")}
                     />
                     {errors?.total_money_sale && (
-                      <MessageError>{errors.total_money_sale.message}</MessageError>
+                      <MessageError>
+                        {errors.total_money_sale.message}
+                      </MessageError>
                     )}
                   </div>
                   <div className="col">
@@ -237,7 +243,7 @@ const Form = () => {
                   </div>
                 </div>
               </>
-            }
+            )}
             <div className="action-btn-div">
               <Button
                 value={id ? "Vender" : "Salvar"}
