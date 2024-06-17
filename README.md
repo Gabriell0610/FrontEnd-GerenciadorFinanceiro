@@ -8,13 +8,16 @@ Este projeto demonstra uma abordagem moderna para desenvolvimento de aplicaçõe
 - Styled Components: Biblioteca para estilização de componentes React com CSS-in-JS.
 - Yup: Biblioteca para validação de esquemas e formulários.
 
-### Instalação e Execução
-Faça o clone do projeto
-`git clone https://github.com/seu-usuario/my-app.git
-cd my-app`
-Instale o yarn e inicie o projeto
-`yarn install
-yarn start`
+### Execução e Instalação
+Faça o clone do projeto em sua máquina
+```
+git clone https://github.com/Gabriell0610/FrontEnd-GerenciadorFinanceiro.git
+```
+Instale as dependencias e inicie o servidor
+```
+yarn install
+yarn start
+```
 
 
 
