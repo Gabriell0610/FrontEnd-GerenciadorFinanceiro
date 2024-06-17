@@ -16,7 +16,7 @@ git clone https://github.com/Gabriell0610/FrontEnd-GerenciadorFinanceiro.git
 Instale as dependencias e inicie o servidor
 ```
 yarn install
-yarn start
+yarn dev
 ```
 
 
